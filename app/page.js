@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import CategoryDropdown from '../components/CategoryDropdown';
 
 
 export const dynamic = 'force-dynamic';
@@ -61,7 +62,7 @@ export default async function HomePage({ searchParams }) {
       <header className="bg-white shadow-md sticky top-0 z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">My Shopee Affiliate</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">My Shopee</h1>
             {/* สามารถเพิ่มเมนูอื่นๆ ได้ที่นี่ */}
           </div>
         </div>
@@ -69,21 +70,7 @@ export default async function HomePage({ searchParams }) {
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">หมวดหมู่สินค้า</h2>
-          <div className="flex flex-wrap gap-2 mb-8">
-            <Link href="/" className={`px-4 py-2 rounded-full text-sm font-medium ${!selectedCategory ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>
-              ทั้งหมด
-            </Link>
-            {categories.map(category => (
-              <Link
-                key={category}
-                href={`/?category=${category}`}
-                className={`px-4 py-2 rounded-full text-sm font-medium ${selectedCategory === category ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-              >
-                {category}
-              </Link>
-            ))}
-          </div>
+          <CategoryDropdown categories={categories} selectedCategory={selectedCategory} />
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
           {products.map(product => (
